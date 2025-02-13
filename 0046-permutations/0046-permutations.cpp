@@ -13,7 +13,7 @@ public:
         for (int i = start; i < nums.size(); i++) {
             swap(nums[start], nums[i]);
             backtrack(result, nums, start + 1);
-            swap(nums[start], nums[i]); // backtrack
+            swap(nums[start], nums[i]);
         }
     }
 };
