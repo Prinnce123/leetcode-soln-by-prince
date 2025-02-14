@@ -7,7 +7,7 @@ class Solution {
         for (int i = 1; i <= amount; i++) {
             for (int j = 0; j < coins.length; j++) {
                 if (i - coins[j] >= 0) {
-                    minCoins[i] = Math.min(minCoins[i], 1 + minCoins[i - coins[j]]);
+                    mincoins[i] = Math.min(minCoins[i], 1 + minCoins[i - coins[j]]);
                 }
             }
         }
