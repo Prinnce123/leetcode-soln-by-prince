@@ -1,19 +1,26 @@
 class Solution {
 public:
     vector<vector<int>> permute(vector<int>& nums) {
-        vector<vector<int>> result;
-        backtrack(result, nums, 0);
-        return result;
+        vector<vector<int>> ans;
+        vector<int> ds;
+        vector<int> freq(nums.size(), 0); // freq vector initialize with 0
+        recur(ds, nums, ans, freq);
+        return ans;
     }
 
-    void backtrack(vector<vector<int>>& result, vector<int>& nums, int start) {
-        if (start == nums.size()) {
-            result.push_back(nums);
+    void recur(vector<int>& ds, vector<int>& nums, vector<vector<int>>& ans, vector<int>& freq) {
+        if (ds.size() == nums.size()) {   // ✅ use == not ===
+            ans.push_back(ds);
+            return;
         }
-        for (int i = start; i < nums.size(); i++) {
-            swap(nums[start], nums[i]);
-            backtrack(result, nums, start + 1);
-            swap(nums[start], nums[i]);
+        for (int i = 0; i < nums.size(); i++) {
+            if (!freq[i]) {
+                ds.push_back(nums[i]);
+                freq[i] = 1;
+                recur(ds, nums, ans, freq);
+                freq[i] = 0;
+                ds.pop_back();
+            }
         }
     }
 };
